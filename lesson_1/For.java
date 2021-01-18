@@ -21,7 +21,7 @@ public class For {
 //            System.out.print(arr[i] + " ");
 //        }
 
-        // break - прерывает цикл
+        // break - прерывает наш цикл
 //        for(int i = 0; i < 5; i++) {
 //            if (i == 3) {
 //                break;
