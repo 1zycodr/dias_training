@@ -1,5 +1,7 @@
 package lesson_2.week_2_homework.part_2;
 
+import java.util.Scanner;
+
 public class MyTime {
     private int second;
     private int minute;
@@ -7,7 +9,7 @@ public class MyTime {
 
     public MyTime() {}
 
-    public MyTime(int second, int minute, int hour) {
+    public MyTime(int hour, int minute, int second) {
         if (!isValidSecond(second) || !isValidMinute(minute) || !isValidHour(hour)) {
             System.out.println("Invalid input!");
         } else {
@@ -63,11 +65,84 @@ public class MyTime {
         return String.format("%02d:%02d:%02d", this.hour, this.minute, this.second);
     }
 
-    public static void main(String[] args) {
-        MyTime time = new MyTime(12, 34, 2);
-        MyTime time1 = new MyTime(333, 34, 2);
+    public void nextSecond() {
+        this.second += 1;
+        if (this.second > 59) {
+            this.second = 0;
+            this.minute += 1;
 
-        System.out.println(time);
+            if (this.minute > 59) {
+                this.minute = 0;
+                this.hour += 1;
+
+                if (this.hour > 23) {
+                    this.hour = 0;
+                }
+            }
+        }
+    }
+
+    public void nextMinute() {
+        this.minute += 1;
+
+        if (this.minute > 59) {
+            this.minute = 0;
+            this.hour += 1;
+
+            if (this.hour > 23) {
+                this.hour = 0;
+            }
+        }
+    }
+
+    public void nextHour() {
+        this.hour += 1;
+
+        if (this.hour > 23) {
+            this.hour = 0;
+        }
+    }
+
+    public void previousSecond() {
+        this.second -= 1;
+
+        if (this.second < 0) {
+            this.second = 59;
+            this.minute -= 1;
+
+            if (this.minute < 0) {
+                this.minute = 59;
+                this.hour -= 1;
+
+                if (this.hour < 0) {
+                    this.hour = 23;
+                }
+            }
+        }
+    }
+
+    public void previousMinute() {
+        this.minute -= 1;
+
+        if (this.minute < 0) {
+            this.minute = 59;
+            this.hour -= 1;
+
+            if (this.hour < 0) {
+                this.hour = 23;
+            }
+        }
+    }
+
+    public void previousHour() {
+        this.hour -= 1;
+        if (this.hour < 0) {
+            this.hour = 23;
+        }
+    }
+
+    public static void main(String[] args) {
+        TestMyTime.startTests();
     }
 }
 

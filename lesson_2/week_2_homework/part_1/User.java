@@ -77,19 +77,4 @@ public class User {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-    public static void main(String[] args) {
-        Scanner cin = new Scanner(System.in);
-        String currentDate;
-
-        for(;;) {
-            currentDate = cin.next();
-
-            if(Validator.checkDate(currentDate)) {
-                System.out.println("Valid!");
-            } else {
-                System.out.println("Invalid");
-            }
-        }
-    }
 }
