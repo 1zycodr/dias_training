@@ -1,6 +1,6 @@
 package lesson_3.hw.task_5;
 
-public class Circle extends Shape {
+public class Circle extends Shape  {
     private double radius = 1.0;
 
     public Circle() {}

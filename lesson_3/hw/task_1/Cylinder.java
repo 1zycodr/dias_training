@@ -43,7 +43,4 @@ public class Cylinder extends Circle {
                 + " height=" + height;
     }
 
-    // R = 5
-    // H = 10
-    // 2 * 3.14 * 5 * 10 + 2 * 3.14 * 25 = 471
 }
