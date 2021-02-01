@@ -22,4 +22,14 @@ public class Circle {
         return Math.PI * radius * radius;
     }
 
+    public double getCircumference() {
+        return 2 * Math.PI * radius;
+    }
+
+    @Override
+    public String toString() {
+        return "Circle[" +
+                "radius=" + radius + ", area=" + getArea() + ", circumference=" + getCircumference() +
+                ']';
+    }
 }
