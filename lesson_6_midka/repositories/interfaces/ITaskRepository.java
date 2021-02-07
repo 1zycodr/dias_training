@@ -9,5 +9,6 @@ public interface ITaskRepository {
     boolean updateTask(Task task);
     boolean deleteTask(Task task);
     Task getTask(int id);
+    List<Task> getTasksByUserId(int id);
     List<Task> getAllTasks();
 }

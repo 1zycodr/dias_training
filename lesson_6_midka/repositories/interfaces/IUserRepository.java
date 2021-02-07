@@ -8,6 +8,8 @@ public interface IUserRepository {
     boolean createUser(User user);
     boolean updateUser(User user);
     boolean deleteUser(User user);
-    User getUser(int id);
+    User getUserById(int id);
+    User getUserByUsernamePassword(String username, String password);
+    User getUserByUsername(String username);
     List<User> getAllUsers();
 }

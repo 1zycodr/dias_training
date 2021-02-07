@@ -23,6 +23,8 @@ public class UserRepository implements IUserRepository {
         Connection con = null;
         PreparedStatement stmt = null;
         String query = "INSERT INTO users (username, password, email, gender) VALUES (?,?,?,?);";
+        ResultSet rs = null;
+        Statement stm = null;
 
         try {
             con = db.getConnection();
@@ -35,11 +37,20 @@ public class UserRepository implements IUserRepository {
 
             stmt.execute();
 
+            stm = con.createStatement();
+            rs = stm.executeQuery("SELECT max(id) FROM users;");
+
+            if (rs.next()) {
+                user.setId(rs.getInt(1));
+            }
+
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             try {
+                rs.close();
+                stm.close();
                 stmt.close();
                 con.close();
             } catch (Exception ex) {
@@ -113,7 +124,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUserById(int id) {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -130,6 +141,85 @@ public class UserRepository implements IUserRepository {
             if (rs.next()) {
                 return new User(
                         id,
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                );
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public User getUserByUsernamePassword(String username, String password) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+        try {
+            con = db.getConnection();
+            stmt = con.prepareStatement(query);
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                );
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM users WHERE username = ?";
+
+        try {
+            con = db.getConnection();
+            stmt = con.prepareStatement(query);
+
+            stmt.setString(1, username);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new User(
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),

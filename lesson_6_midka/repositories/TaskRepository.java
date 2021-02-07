@@ -24,6 +24,8 @@ public class TaskRepository implements ITaskRepository {
         Connection con = null;
         PreparedStatement stmt = null;
         String query = "INSERT INTO tasks (user_id, text, status) VALUES (?,?,?);";
+        ResultSet rs = null;
+        Statement stm = null;
 
         try {
             con = db.getConnection();
@@ -35,11 +37,20 @@ public class TaskRepository implements ITaskRepository {
 
             stmt.execute();
 
+            stm = con.createStatement();
+            rs = stm.executeQuery("SELECT max(id) FROM tasks;");
+
+            if (rs.next()) {
+                task.setId(rs.getInt(1));
+            }
+
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
             try {
+                rs.close();
+                stm.close();
                 stmt.close();
                 con.close();
             } catch (Exception ex) {
@@ -134,6 +145,46 @@ public class TaskRepository implements ITaskRepository {
                         rs.getBoolean(4)
                 );
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Task> getTasksByUserId(int id) {
+        Connection con = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM tasks WHERE user_id = " + id;
+
+        try {
+            con = db.getConnection();
+            stmt = con.createStatement();
+
+            rs = stmt.executeQuery(query);
+
+            List<Task> tasks = new ArrayList<>();
+
+            while (rs.next()) {
+                tasks.add(new Task(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getBoolean(4)
+                ));
+            }
+
+            return tasks;
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
