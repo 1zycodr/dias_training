@@ -2,22 +2,22 @@ package lesson_6_midka.entities;
 
 public class Task {
     private int id;
-    private int user_id;
+    private int userId;
     private String text;
     private boolean status;
 
     public Task() {
     }
 
-    public Task(int id, int user_id, String text, boolean status) {
+    public Task(int id, int userId, String text, boolean status) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.text = text;
         this.status = status;
     }
 
-    public Task(int user_id, String text, boolean status) {
-        this.user_id = user_id;
+    public Task(int userId, String text, boolean status) {
+        this.userId = userId;
         this.text = text;
         this.status = status;
     }
@@ -30,12 +30,12 @@ public class Task {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getText() {
@@ -58,7 +58,7 @@ public class Task {
     public String toString() {
         return "Task{" +
                 "id=" + id +
-                ", user_id=" + user_id +
+                ", userId=" + userId +
                 ", text='" + text + '\'' +
                 ", status=" + status +
                 '}';

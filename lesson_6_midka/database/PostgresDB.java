@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class PostgresDB implements IPostgresDB {
     @Override
     public Connection getConnection() throws SQLException, ClassNotFoundException {
-        String connUrl = "jdbc:postgresql://localhost:5432/Midka";
+        String connUrl = "jdbc:postgresql://localhost:5432/test";
 
         try {
             Class.forName("org.postgresql.Driver");
-            Connection con = DriverManager.getConnection(connUrl, "postgres", "dota2tapor");
+            Connection con = DriverManager.getConnection(connUrl, "postgres", "ghbdtn");
             return con;
         } catch (SQLException ex) {
             ex.printStackTrace();
