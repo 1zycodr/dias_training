@@ -1,14 +1,14 @@
 package lesson_5.midterm;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Visit {
     private Сustomer customer;
-    private Date date;
+    private Calendar date;
     private double serviceExpense;
     private double productExpense;
 
-    public Visit(Сustomer customer,Date date) {
+    public Visit(Сustomer customer, Calendar date) {
         this.customer = customer;
         this.date = date;
     }

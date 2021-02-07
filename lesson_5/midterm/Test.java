@@ -1,6 +1,8 @@
 package lesson_5.midterm;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.spi.CalendarDataProvider;
 
 public class Test {
     public static void main(String[] args) {
@@ -20,9 +22,9 @@ public class Test {
         System.out.println(customer2);
         System.out.println(customer3);
 
-        Visit visit1 = new Visit(customer1, new Date(2020,2,4));
-        Visit visit2 = new Visit(customer2, new Date(2020,4,6));
-        Visit visit3 = new Visit(customer3, new Date(2020,7,10));
+        Visit visit1 = new Visit(customer1, Calendar.getInstance());
+        Visit visit2 = new Visit(customer2, Calendar.getInstance());
+        Visit visit3 = new Visit(customer3, Calendar.getInstance());
 
         visit1.setProductExpense(1000.0);
         visit2.setProductExpense(1500.0);
