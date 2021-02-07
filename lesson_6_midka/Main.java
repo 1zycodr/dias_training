@@ -6,6 +6,12 @@ import lesson_6_midka.database.PostgresDB;
 import lesson_6_midka.repositories.TaskRepository;
 import lesson_6_midka.repositories.UserRepository;
 
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         PostgresDB db = new PostgresDB();
@@ -18,5 +24,8 @@ public class Main {
 
         App app = new App(userController, taskController);
         app.start();
+
+
+
     }
 }
