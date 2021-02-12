@@ -18,4 +18,15 @@ public class PostgresDB implements IPostgresDB {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        PostgresDB db = new PostgresDB();
+        try {
+            Connection con = db.getConnection();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

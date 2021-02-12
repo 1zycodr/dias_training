@@ -5,6 +5,7 @@ import lesson_6_midka.entities.Task;
 import lesson_6_midka.entities.User;
 import lesson_6_midka.repositories.TaskRepository;
 
+import java.sql.Date;
 import java.util.List;
 
 public class TaskController implements ITaskController {
@@ -20,8 +21,8 @@ public class TaskController implements ITaskController {
     }
 
     @Override
-    public boolean createTask(Task task) {
-        return repo.createTask(task);
+    public boolean createTask(Task task, Date start_date, Date post_date) {
+        return repo.createTask(task, start_date, post_date);
     }
 
     @Override

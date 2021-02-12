@@ -6,6 +6,8 @@ import lesson_6_midka.entities.Task;
 import lesson_6_midka.entities.User;
 import lesson_6_midka.exceptions.InvalidInputException;
 
+import java.sql.Date;
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -155,7 +157,9 @@ public class App {
                             "[id: " + a.getId() +
                                     ", status: " +
                                     (a.isStatus() == true ? "done" : "undone") +
-                                    "] " + a.getText())
+                                    ", " + a.getStart_date() + " - " + a.getPost_date() +
+                                    "] " + a.getText()
+                    )
             );
 
             if (userTasks.size() == 0) {
@@ -176,8 +180,26 @@ public class App {
                             System.out.print("Enter text: ");
                             sc.nextLine();
                             String todoText = sc.nextLine();
+                            System.out.println("Enter start date");
+                            System.out.print("Enter day: ");
+                            int day = sc.nextInt();
+                            System.out.print("Enter month: ");
+                            int month = sc.nextInt();
+                            System.out.print("Enter year: ");
+                            int year = sc.nextInt();
+                            Date startDate = new Date(year, month, day);
+
+                            System.out.println("Enter post date");
+                            System.out.print("Enter day: ");
+                            day = sc.nextInt();
+                            System.out.print("Enter month: ");
+                            month = sc.nextInt();
+                            System.out.print("Enter year: ");
+                            year = sc.nextInt();
+                            Date postDate = new Date(year, month, day);
+
                             Task newTask = new Task(user.getId(), todoText, false);
-                            if (taskController.createTask(newTask)) {
+                            if (taskController.createTask(newTask, startDate, postDate)) {
                                 System.out.println("Task created!");
                                 userMenu(user);
                             } else {

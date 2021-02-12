@@ -1,10 +1,14 @@
 package lesson_6_midka.entities;
 
+import java.sql.Date;
+
 public class Task {
     private int id;
     private int userId;
     private String text;
     private boolean status;
+    private Date start_date;
+    private Date post_date;
 
     public Task() {
     }
@@ -20,6 +24,31 @@ public class Task {
         this.userId = userId;
         this.text = text;
         this.status = status;
+    }
+
+    public Task(int id, int userId, String text, boolean status, Date start_date, Date post_date) {
+        this.id = id;
+        this.userId = userId;
+        this.text = text;
+        this.status = status;
+        this.start_date = start_date;
+        this.post_date = post_date;
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getPost_date() {
+        return post_date;
+    }
+
+    public void setPost_date(Date post_date) {
+        this.post_date = post_date;
     }
 
     public int getId() {
